@@ -1,0 +1,10 @@
+settlement_date = 2023.05.15
+maturity_date = 2028.05.15
+coupon_rate = 0.06
+freq = 4
+par_value = 2000
+basis_type = 2
+
+result1 = bondAccrInt(settlement=settlement_date, maturity=maturity_date, coupon=coupon_rate, frequency=freq, par=par_value, basis=basis_type)
+
+assert(result == result1)

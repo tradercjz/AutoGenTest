@@ -1,0 +1,10 @@
+deviceID = `D001`D002
+timestamp = [2023.01.01T09:00:00.000, 2023.01.01T09:00:01.000]
+temp = [30, 25]
+sensorData = table(deviceID, timestamp, temp)
+
+t = latestKeyedTable(`deviceID, `timestamp, sensorData)
+insert into t values (`D001`D003, [2023.01.01T09:00:02.000, 2023.01.01T09:00:03.000], [32, 28])
+result1 = t
+
+assert(each(eqObj, result1.values(), result.values()))

@@ -1,0 +1,5 @@
+X = [0,0,2,2,5]
+Y = [0.0, 0.5, 3.0, -0.2, 4.0]
+newX = [1.0, 2.5, 4.0]
+result1 = kroghInterpolate(X, Y, newX, 1)
+assert(eqObj(result, result1))

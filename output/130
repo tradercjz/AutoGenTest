@@ -1,0 +1,4 @@
+
+setMemLimitOfAllTempResults(1.2)
+result1 = getMemLimitOfAllTempResults()
+assert(result == result1)

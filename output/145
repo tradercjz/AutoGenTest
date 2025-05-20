@@ -1,0 +1,8 @@
+ts = 2023.01.01T09:00:00 + 0..4
+device_id = take(`D001`D002, 5)
+current = [5.2, , , 6.8, ]
+sensor_log = table(ts, device_id, current)
+
+result1 = select ts, device_id, bfill(current, 2) as current from sensor_log context by device_id
+
+assert(each(eqObj, result1.values(), result.values()))

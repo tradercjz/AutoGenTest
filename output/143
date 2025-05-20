@@ -1,0 +1,3 @@
+tempReadings = [25.3, 26.1, 24.8, 27.5, 23.9]
+avgTemp = avg(tempReadings); assert round(avgTemp, 2) == 25.52; result1 = avgTemp
+assert(result == result1)

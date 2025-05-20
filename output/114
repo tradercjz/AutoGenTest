@@ -1,0 +1,6 @@
+t = table(
+`A`A`A`A`A`B`B`B`B`B`C`C`C`C as device_id,
+[100,100,100,200,200,300,400,400,400,NULL,500,500,500,600] as error_code
+)
+result1 = select mode(error_code) as common_error from t group by device_id
+assert(each(eqObj, result1.values(), result.values()))

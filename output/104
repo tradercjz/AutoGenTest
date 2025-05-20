@@ -1,0 +1,5 @@
+installDates = [2020.02.29, 2021.03.15, 2024.12.01, 2100.01.01]
+
+result1 = isLeapYear(installDates)
+
+assert(eqObj(result, result1))

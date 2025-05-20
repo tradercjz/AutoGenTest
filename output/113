@@ -1,0 +1,5 @@
+sensorReadings = [NULL, 150, NULL, 200, 250, NULL, 300]
+
+result1 = milastNot(sensorReadings, 4, 2)
+
+assert(eqObj(result, result1))

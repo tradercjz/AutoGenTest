@@ -1,0 +1,7 @@
+timestamp = [2023.01.01T09:00:00, 2023.01.01T10:30:00, 2023.01.01T12:00:00, 2023.01.01T13:15:00, 2023.01.01T14:45:00]
+temperature = [28.5, 30.1, 29.8, 31.5, 32.0]
+tempSeries = indexedSeries(timestamp, temperature)
+
+result1 = window(max, tempSeries, 1h:3h)
+
+assert(each(eqObj, result, result1))

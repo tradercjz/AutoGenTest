@@ -1,0 +1,4 @@
+temp = [18.5,19.2,20.1,21.6,22.0,21.3]
+aqi = [30,45,60,85,75,95]
+result1 = mwavg(temp, aqi, 4, 2)
+assert(eqObj(result, result1))

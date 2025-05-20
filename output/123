@@ -1,0 +1,3 @@
+m = matrix([[9.2, 3.5, 7.1], [2.8, 4.3, 5.0], [1.6, 5.7, 6.2]])
+result1 = rowCummax(m)
+assert(each(eqObj, result, result1))

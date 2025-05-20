@@ -1,0 +1,8 @@
+
+tp = [[10, 15, 20], [5, 8, 12]]
+tp.setColumnarTuple!()
+
+
+result1 = rowCumsum(tp)
+
+assert(each(eqObj, result, result1))

@@ -1,0 +1,3 @@
+sensorReadings = matrix([0.7647,0.8158,0.1407],[1.0942,1.4436,2.3124])
+result1 = asinh(sensorReadings)
+assert(each(eqObj, result, result1))

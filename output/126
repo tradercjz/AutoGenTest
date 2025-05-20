@@ -1,0 +1,5 @@
+device_readings = table(1..5 as id, [23.5, NULL, 45.1, NULL, 38.9] as sensor1, [NULL, 18.4, 22.3, 25.9, NULL] as sensor2, [19.8, 33.1, NULL, NULL, 40.5] as sensor3)
+
+result1 = rowSize(device_readings[`sensor1], device_readings[`sensor2], device_readings[`sensor3])
+
+assert(eqObj(result, result1))

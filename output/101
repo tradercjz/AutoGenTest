@@ -1,0 +1,3 @@
+
+result1 = invBeta(5, 2, [0.05,0.95])
+assert(eqObj(result, result1))

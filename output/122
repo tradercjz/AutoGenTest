@@ -1,0 +1,5 @@
+Y = [12.4, 14.1, 13.8, 15.7, 16.2]
+X = matrix([220, 10, 25], [215, 12, 26], [218, 11, 24], [224, 9, 27], [210, 13, 28]).transpose()
+params = ols(Y, X)
+result1 = residual(Y, X, params)
+assert(eqObj(result, result1))

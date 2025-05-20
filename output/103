@@ -1,0 +1,8 @@
+deviceID = [1001, 1002, 1003]
+sensorData = [[25,30], [18,22,24], [28,35]]
+t = table(deviceID, sensorData)
+t.sensorData.setColumnarTuple!()
+
+result1 = [isColumnarTuple(t.deviceID), isColumnarTuple(t.sensorData)]
+
+assert(eqObj(result, result1))

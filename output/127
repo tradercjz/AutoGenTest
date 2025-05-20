@@ -1,0 +1,9 @@
+deviceID = `D001`D002`D003
+temp1 = 25 28 30
+temp2 = 26 27 29
+temp3 = 24 26 28
+temp4 = 27 29 31
+temp5 = 23 25 27
+t = table(deviceID, temp1, temp2, temp3, temp4, temp5)
+result1 = select temp1...temp5, (temp1+temp2+temp3+temp4+temp5)/5 as avg_temp from t
+assert(each(eqObj, result1.values(), result.values()))
