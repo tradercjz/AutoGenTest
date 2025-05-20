@@ -1,4 +1,4 @@
-from csv_parser import stream_filtered_records
+from csv_parser import stream_filtered_records, generate_test_csv
 from ddb import DatabaseSession
 
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -74,11 +74,14 @@ def process_single_record(record_data):
 
     record_id = record_data['id']
     status = "success"
+    testScript=""
     print(f"[Process {os.getpid()}] Starting to process Record ID: {record_id}")
     result_message=""
     with DatabaseSession(config["host"], config["port"],  config["user"], config["passwd"]) as db:
         prepareCode = record_data["prepareCode"].strip().strip('"\'')
+        record_data["prepareCode"]=prepareCode
         runCode = record_data["runCode"].strip().strip('"\'')
+        record_data["runCode"]=runCode
 
         runScript = f"""
             {prepareCode}
@@ -100,8 +103,9 @@ def process_single_record(record_data):
             status = "failure"
             result_message = str(e)
     print(f"[Process {os.getpid()}] Finished processing Record ID: {record_id}")
-   
-    return {"status": status, "id": record_id, "message": result_message}
+    record_data["testCode"] = testScript
+
+    return {"status": status, "id": record_id, "message": result_message, "record": record_data}
 
 
 if __name__ == "__main__":
@@ -148,3 +152,7 @@ if __name__ == "__main__":
             print(f"  ID: {failure['id']}, Reason: {failure['message']}")
     else:
         print("All tasks processed successfully (or no tasks to process).")
+
+    #对于成功运行的case,则生成测试case的csv文件，这里默认固定为./output_test.csv了
+    if successful_tasks:
+        generate_test_csv("./output_test.csv",  [item["record"] for item in successful_tasks])
