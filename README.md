@@ -2,7 +2,7 @@
 # 项目作用
 读取AllTask.csv里的任务，然后把prepareCode和runCode组成脚本，提交到dolphindb的server运行。以测试生成的脚本是否正确。
 
-如果脚本正确，会在目录的output子目录下，生成对应的测试case。
+如果脚本正确，会在目录的output子目录下，生成对应的测试case。同时，对于成功运行的case,则生成测试case的csv文件，这里默认固定为./output_test.csv了
 
 测试case的文件名是csv(excel)文件里的编号id
 

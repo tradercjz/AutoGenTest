@@ -1,5 +1,6 @@
 import re
 import os
+import csv
 
 def clean_code_block_content(code_str):
     """
@@ -85,6 +86,7 @@ def _process_record_buffer_for_stream(record_lines_buffer, filter_person_name, r
 
         rec_id = parts[0].strip()
         person_in_charge = parts[1].strip()
+        function = parts[3].strip()
         question_raw = parts[4].strip()
         prepre_code_raw = parts[5].strip()
         run_code_raw = parts[6].strip()
@@ -99,7 +101,8 @@ def _process_record_buffer_for_stream(record_lines_buffer, filter_person_name, r
 
         return {
             "id": rec_id,
-            "负责人": person_in_charge,
+            "person": person_in_charge,
+            "function": function,
             "question": question_cleaned,
             "prepareCode": clean_code_block_content(prepre_code_raw),
             "runCode": clean_code_block_content(run_code_raw)
@@ -208,3 +211,41 @@ def stream_filtered_records(filepath, filter_person_name):
             if processed_record:
                 yield processed_record
 
+
+def generate_test_csv(output_csv_filepath, records_iterable):
+    """
+    Generates a CSV file from an iterable of record dictionaries.
+
+    Args:
+        output_csv_filepath (str): Path to save the output CSV file.
+        records_iterable (iterable): An iterable (e.g., list or generator) of
+                                     record dictionaries. Each dictionary should have
+                                     keys like "original_id", "test_point", "question",
+                                     "prepareCode", "runCode".
+    """
+        
+    headers = ["编号", "测试点", "问题", "前置脚本", "校验脚本", "正确答案", "清理环境"]
+
+    with open(output_csv_filepath, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(headers)
+
+        for record in records_iterable:
+            col_编号 = record.get('id')
+            col_测试点 = record.get("function", "")
+            col_问题 = record.get("question", "")
+            col_前置脚本 = record.get("prepareCode", "")
+            col_正确答案 = record.get("runCode", "")
+            col_校验脚本 = record.get("testCode", "")
+            col_清理环境 = ""
+
+            writer.writerow([
+                col_编号,
+                col_测试点,
+                col_问题,
+                col_前置脚本,
+                col_校验脚本,
+                col_正确答案,
+                col_清理环境
+            ])
+    print(f"Successfully generated CSV: {output_csv_filepath}")
