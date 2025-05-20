@@ -16,7 +16,8 @@
 说明这些ID的对应的脚本不对，需要人工查看处理
 
 # 配置
-可以修改main.py中的person_to_filter_for的值，修改为自己的名字，这样可以从所有的任务重找到自己需要处理的任务
+1. 可以修改main.py中的person_to_filter_for的值，修改为自己的名字，这样可以从所有的任务重找到自己需要处理的任务
+2. 修改.env中的DDB_开头的配置（DEEPSEEK_开头的暂时项目用不到），用来连接dolphindb server验证脚本
 
 # 运行
 pip install -r requirements.txt
