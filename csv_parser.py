@@ -237,7 +237,7 @@ def generate_test_csv(output_csv_filepath, records_iterable):
             col_前置脚本 = record.get("prepareCode", "")
             col_正确答案 = record.get("runCode", "")
             col_校验脚本 = record.get("testCode", "")
-            col_清理环境 = ""
+            col_清理环境 = "\"\""
 
             writer.writerow([
                 col_编号,
